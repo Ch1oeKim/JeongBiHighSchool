@@ -1,15 +1,15 @@
 JeongBiHighSchool/  
 ├── package.json
+├── package-lock.json
 ├── vite.config.js
+├── index.html
+├── index.css
 ├── src/
 │   ├── main.jsx
 │   ├── App.jsx
 │   └── JeongbiHighSchoolLanding.jsx
 ├── public/
 │   └── favicon.ico
-├── index.html
-├── index.css
-├── README.md
 └── netlify.toml
 
 
