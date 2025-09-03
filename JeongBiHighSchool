@@ -1,3 +1,122 @@
+JeongBiHighSchool/
+├── package.json
+├── package-lock.json
+├── netlify.toml
+├── vite.config.js
+├── index.html
+├── index.css
+├── README.md
+├── public/
+│   └── favicon.ico
+└── src/
+├── main.jsx
+├── App.jsx
+└── JeongbiHighSchoolLanding.jsx
+
+---
+
+// package.json
+{
+"name": "jeongbi-highschool-landing",
+"version": "1.0.0",
+"private": true,
+"scripts": {
+"dev": "vite",
+"build": "vite build",
+"preview": "vite preview"
+},
+"dependencies": {
+"framer-motion": "^11.0.0",
+"lucide-react": "^0.452.0",
+"react": "^18.2.0",
+"react-dom": "^18.2.0"
+},
+"devDependencies": {
+"@vitejs/plugin-react": "^4.2.0",
+"vite": "^5.0.0"
+}
+}
+
+---
+
+// netlify.toml
+[build]
+command = "npm run build"
+publish = "dist"
+
+[build.environment]
+NODE\_VERSION = "18"
+
+---
+
+// vite.config.js
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+
+export default defineConfig({
+plugins: \[react()],
+server: { port: 5173 },
+base: './'
+});
+
+---
+
+// index.html
+
+<!DOCTYPE html>
+
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>정비고등학교</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
+
+---
+
+// index.css
+body {
+font-family: 'Pretendard', 'IBM Plex Sans KR', sans-serif;
+margin: 0;
+background: #0b0b0e;
+color: #f5f5f7;
+}
+
+---
+
+// src/main.jsx
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App';
+import '../index.css';
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+\<React.StrictMode> <App />
+\</React.StrictMode>
+);
+
+---
+
+// src/App.jsx
+import React from 'react';
+import JeongbiHighSchoolLanding from './JeongbiHighSchoolLanding';
+
+export default function App() {
+return <JeongbiHighSchoolLanding />;
+}
+
+---
+
+// src/JeongbiHighSchoolLanding.jsx
+// 여기에 이전에 만들어드린 완전한 정비고등학교 랜딩 페이지 React 코드 붙여넣기
+// (Nav, Hero, About, Identity, History, Vision, Apply, Contact, Footer 등 모두 포함)
+
 import React from "react";
 import { motion } from "framer-motion";
 import { GraduationCap, Calendar, Flag, Flower2, Trees, Mail, MapPin, Phone, ArrowRight, Sparkles } from "lucide-react";
