@@ -1,16 +1,16 @@
-JeongBiHighSchool/
-├── package.json
-├── package-lock.json
-├── vite.config.js
-├── index.html
-├── index.css
-├── src/
-│   ├── main.jsx
-│   ├── App.jsx
-│   └── JeongbiHighSchoolLanding.jsx
-├── public/
-│   └── favicon.ico
-└── netlify.toml
+package.json
+package-lock.json
+vite.config.js
+index.html
+index.css
+netlify.toml
+src/
+  ├─ main.jsx
+  ├─ App.jsx
+  └─ JeongbiHighSchoolLanding.jsx
+public/
+  └─ favicon.ico
+
 
 {
   "name": "jeongbi-highschool-landing",
