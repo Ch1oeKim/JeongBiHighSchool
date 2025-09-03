@@ -1,0 +1,275 @@
+import React from "react";
+import { motion } from "framer-motion";
+import { GraduationCap, Calendar, Flag, Flower2, Trees, Mail, MapPin, Phone, ArrowRight, Sparkles } from "lucide-react";
+
+// 색 팔레트
+const colors = {
+  bg: "#0b0b0e",
+  text: "#f5f5f7",
+  subtext: "#c7c7ce",
+  magenta: "#ff1f8a",
+  magentaSoft: "#ff75b5",
+  stroke: "#202027",
+};
+
+// 공통 섹션 래퍼
+const Section = ({ id, title, subtitle, children }) => (
+  <section id={id} className="relative w-full max-w-6xl mx-auto px-6 py-20">
+    <motion.h2
+      initial={{ opacity: 0, y: 16 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6 }}
+      className="text-3xl md:text-4xl font-extrabold tracking-tight text-white"
+    >
+      {title}
+    </motion.h2>
+    {subtitle && (
+      <motion.p
+        initial={{ opacity: 0, y: 10 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, delay: 0.1 }}
+        className="mt-3 text-base md:text-lg text-neutral-300"
+      >
+        {subtitle}
+      </motion.p>
+    )}
+    <div className="mt-10">{children}</div>
+  </section>
+);
+
+// 뱃지 컴포넌트
+const Badge = ({ children }) => (
+  <span className="inline-flex items-center gap-2 text-xs font-medium tracking-wide rounded-full border px-3 py-1 text-white"
+    style={{ borderColor: colors.magenta, background: "rgba(255, 31, 138, 0.08)" }}>
+    {children}
+  </span>
+);
+
+// 카드 컴포넌트
+const Card = ({ icon: Icon, title, desc }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 24 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.6 }}
+    className="rounded-2xl p-6 border bg-black/40 hover:bg-black/60 transition-colors"
+    style={{ borderColor: colors.stroke }}
+  >
+    <div className="flex items-center gap-3">
+      <div className="p-2 rounded-xl" style={{ background: "rgba(255, 31, 138, 0.12)", color: colors.magenta }}>
+        <Icon size={22} />
+      </div>
+      <h3 className="text-lg font-semibold text-white">{title}</h3>
+    </div>
+    <p className="mt-3 text-sm leading-6 text-neutral-300">{desc}</p>
+  </motion.div>
+);
+
+// 네비게이션
+const Nav = () => (
+  <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-black/40 border-b" style={{ borderColor: colors.stroke }}>
+    <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="#home" className="flex items-center gap-2 text-white font-semibold">
+        <Sparkles size={18} style={{ color: colors.magenta }} />
+        정비고등학교
+      </a>
+      <div className="hidden md:flex items-center gap-6 text-sm">
+        <a href="#about" className="text-neutral-300 hover:text-white">학교소개</a>
+        <a href="#identity" className="text-neutral-300 hover:text-white">정체성</a>
+        <a href="#history" className="text-neutral-300 hover:text-white">연혁</a>
+        <a href="#vision" className="text-neutral-300 hover:text-white">비전</a>
+        <a href="#contact" className="text-neutral-300 hover:text-white">오시는길</a>
+        <a href="#apply" className="ml-2 inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-white text-xs font-medium"
+           style={{ background: colors.magenta }}>
+          입학 안내 <ArrowRight size={16} />
+        </a>
+      </div>
+    </div>
+  </nav>
+);
+
+// 히어로 섹션
+const Hero = () => (
+  <header id="home" className="relative overflow-hidden" style={{ background: `radial-gradient(1200px 600px at 20% -10%, rgba(255,31,138,0.25), transparent 60%), radial-gradient(900px 500px at 90% 10%, rgba(255,31,138,0.12), transparent 60%)`, backgroundColor: colors.bg }}>
+    <div className="max-w-6xl mx-auto px-6 pt-36 pb-24">
+      <Badge>
+        <GraduationCap size={14} /> 정비고등학교 • Public High School
+      </Badge>
+      <motion.h1
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7 }}
+        className="mt-6 text-4xl md:text-6xl font-black tracking-tight leading-[1.1] text-white"
+      >
+        새 시대를 열어 갈 인재의 요람
+      </motion.h1>
+      <motion.p
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, delay: 0.05 }}
+        className="mt-4 text-lg md:text-xl text-neutral-200 max-w-2xl"
+      >
+        우리는 현재에 머물지 않고, 더 나은 내일을 향해 배우고 성장합니다.
+      </motion.p>
+
+      <motion.blockquote
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8, delay: 0.15 }}
+        className="mt-8 border-l-4 pl-5 text-xl md:text-2xl font-semibold"
+        style={{ borderColor: colors.magenta, color: colors.magentaSoft }}
+      >
+        “우리는 멸렬에도 정진하라 흐드러진 숨을 딛고 비상하라”
+      </motion.blockquote>
+
+      <div className="mt-10 flex flex-wrap gap-3">
+        <a href="#about" className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold text-white" style={{ background: colors.magenta }}>
+          학교 소개 보기 <ArrowRight size={18} />
+        </a>
+        <a href="#contact" className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold border text-white" style={{ borderColor: colors.magenta }}>
+          위치 및 연락처
+        </a>
+      </div>
+    </div>
+    <div className="pointer-events-none absolute inset-0 opacity-20" style={{ backgroundImage: "linear-gradient(transparent, rgba(255,255,255,0.04))" }} />
+  </header>
+);
+
+// 학교 소개
+const About = () => (
+  <Section id="about" title="정비고등학교 소개" subtitle="새 시대를 만들어나갈 인재를 길러 내는 공립 남녀공학 고등학교">
+    <div className="grid md:grid-cols-3 gap-6">
+      <Card icon={Flag} title="학교 유형" desc="공립 남녀공학 고등학교 (자동차 정비 전공과는 무관)" />
+      <Card icon={Calendar} title="역사" desc="100주년을 기점으로 남고에서 남녀공학으로 전환. 현재 약 116년의 전통을 이어갑니다." />
+      <Card icon={GraduationCap} title="교육 목표" desc="미래 역량·창의성·공감과 배려를 갖춘 시민 육성" />
+    </div>
+  </Section>
+);
+
+// 정체성 (교훈/교화/교목)
+const Identity = () => (
+  <Section id="identity" title="학교 정체성" subtitle="교훈 · 교화 · 교목">
+    <div className="grid md:grid-cols-3 gap-6">
+      <Card icon={GraduationCap} title="교훈" desc="[예시] 성실 · 창의 · 봉사 — 실제 교훈으로 수정해 주세요." />
+      <Card icon={Flower2} title="교화(校花)" desc="[예시] 동백 — 실제 교화로 수정해 주세요." />
+      <Card icon={Trees} title="교목(校木)" desc="[예시] 은행나무 — 실제 교목으로 수정해 주세요." />
+    </div>
+    <p className="mt-6 text-sm text-neutral-400">※ 위 항목은 실제 학교의 교훈/교화/교목으로 교체해 주세요.</p>
+  </Section>
+);
+
+// 연혁
+const History = () => {
+  const currentYear = new Date().getFullYear();
+  const founded = currentYear - 116;
+
+  const items = [
+    { year: founded, text: "개교 (연도는 추정치입니다)" },
+    { year: founded + 100, text: "개교 100주년 — 남학교에서 남녀공학으로 전환" },
+    { year: currentYear, text: `현재 ${currentYear - founded}주년 (약 116년)` },
+  ];
+  return (
+    <Section id="history" title="연혁" subtitle="오랜 전통과 함께 미래를 준비합니다">
+      <div className="relative border-l pl-6" style={{ borderColor: colors.stroke }}>
+        {items.map((it, idx) => (
+          <motion.div
+            key={idx}
+            initial={{ opacity: 0, x: -12 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: idx * 0.05 }}
+            className="mb-8"
+          >
+            <div className="absolute -left-2 mt-1 w-3 h-3 rounded-full" style={{ background: colors.magenta }} />
+            <div className="text-white font-semibold">{it.year}년</div>
+            <div className="text-neutral-300 text-sm mt-1">{it.text}</div>
+          </motion.div>
+        ))}
+      </div>
+    </Section>
+  );
+};
+
+// 비전/핵심가치
+const Vision = () => (
+  <Section id="vision" title="비전과 핵심가치" subtitle="우리는 멸렬에도 정진하고, 흐드러진 숨을 딛고 비상합니다">
+    <div className="grid md:grid-cols-3 gap-6">
+      <Card icon={Sparkles} title="창의와 도전" desc="문제를 새롭게 정의하고, 실패를 성장의 연료로 삼습니다." />
+      <Card icon={Flag} title="책임과 공동체" desc="배려와 협력으로 더 큰 성취를 이룹니다." />
+      <Card icon={GraduationCap} title="미래역량" desc="리터러시, 디지털, 글로벌 감수성을 갖춘 인재 육성" />
+    </div>
+  </Section>
+);
+
+// CTA 섹션
+const Apply = () => (
+  <Section id="apply" title="입학 안내" subtitle="정비고등학교와 함께할 새로운 발걸음을 기다립니다">
+    <div className="rounded-2xl p-8 md:p-10 border bg-black/40" style={{ borderColor: colors.stroke }}>
+      <div className="md:flex items-center justify-between gap-8">
+        <div>
+          <h3 className="text-2xl font-bold text-white">학교 소개 자료 & 입학 전형 안내</h3>
+          <p className="mt-2 text-neutral-300 text-sm">아래 버튼을 통해 안내 PDF/지원 일정을 제공할 수 있습니다.</p>
+        </div>
+        <div className="mt-6 md:mt-0 flex flex-wrap gap-3">
+          <a href="#" className="px-4 py-2 rounded-xl text-sm font-semibold text-white" style={{ background: colors.magenta }}>안내 자료 보기</a>
+          <a href="#contact" className="px-4 py-2 rounded-xl text-sm font-semibold border text-white" style={{ borderColor: colors.magenta }}>문의하기</a>
+        </div>
+      </div>
+    </div>
+  </Section>
+);
+
+// 오시는 길 / 연락처
+const Contact = () => (
+  <Section id="contact" title="오시는 길 & 연락처" subtitle="문의 환영합니다">
+    <div className="grid md:grid-cols-2 gap-8">
+      <div className="rounded-2xl overflow-hidden border" style={{ borderColor: colors.stroke }}>
+        <div className="aspect-video w-full bg-black/30 flex items-center justify-center">
+          <MapPin />
+          <span className="ml-2 text-neutral-400 text-sm">지도 자리 — 실제 주소 지도 Iframe으로 교체</span>
+        </div>
+      </div>
+      <div className="space-y-4">
+        <div className="flex items-center gap-3 text-neutral-200"><Phone size={18} style={{ color: colors.magenta }} /><span>교무실: 02-000-0000</span></div>
+        <div className="flex items-center gap-3 text-neutral-200"><Mail size={18} style={{ color: colors.magenta }} /><span>이메일: info@jeongbi.hs.kr</span></div>
+      </div>
+    </div>
+  </Section>
+);
+
+// 푸터
+const Footer = () => (
+  <footer className="border-t" style={{ borderColor: colors.stroke, backgroundColor: "#0a0a0c" }}>
+    <div className="max-w-6xl mx-auto px-6 py-10 text-neutral-400 text-sm">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>© {new Date().getFullYear()} 정비고등학교. All rights reserved.</div>
+        <div className="flex items-center gap-5">
+          <a href="#identity" className="hover:text-white">교훈/교화/교목</a>
+          <a href="#history" className="hover:text-white">연혁</a>
+          <a href="#contact" className="hover:text-white">오시는 길</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+);
+
+export default function JeongbiHighSchoolLanding() {
+  return (
+    <div style={{ backgroundColor: colors.bg, color: colors.text, minHeight: "100vh" }}>
+      <Nav />
+      <Hero />
+      <About />
+      <Identity />
+      <History />
+      <Vision />
+      <Apply />
+      <Contact />
+      <Footer />
+      <div className="fixed inset-0 -z-10 pointer-events-none" style={{
+        background: `radial-gradient(600px 300px at 20% 80%, rgba(255,31,138,0.18), transparent 60%), radial-gradient(500px 250px at 80% 20%, rgba(255,31,138,0.12), transparent 60%)`
+      }} />
+    </div>
+  );
+}
